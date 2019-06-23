@@ -13,6 +13,11 @@ metadata:
   labels:
     control-plane: controller-manager
 spec:
+  securityContext:
+    runAsUser: 1000
+    runAsGroup: 1000
+    privileged: false
+    allowPrivilegeEscalation: false
   selector:
     matchLabels:
       control-plane: controller-manager

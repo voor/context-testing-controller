@@ -9,8 +9,8 @@ namespace: context-testing-controller-system
 namePrefix: context-testing-controller-
 
 # Labels to add to all resources and selectors.
-#commonLabels:
-#  someName: someValue
+commonLabels:
+ app: context-testing
 
 bases:
 - ../crd
@@ -41,3 +41,19 @@ patches:
 # Uncomment 'CAINJECTION' in crd/kustomization.yaml to enable the CA injection in the admission webhooks.
 # 'CERTMANAGER' needs to be enabled to use ca injection
 #- webhookcainjection_patch.yaml
+
+vars:
+- name: LEADER_ELECTION_PSP
+  objref:
+    kind: PodSecurityPolicy
+    name: leader-election-psp
+    apiVersion: extensions/v1beta1
+  fieldref:
+    fieldpath: metadata.name
+- name: MANAGER_PSP
+  objref:
+    kind: PodSecurityPolicy
+    name: manager-psp
+    apiVersion: extensions/v1beta1
+  fieldref:
+    fieldpath: metadata.name
