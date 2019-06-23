@@ -1,0 +1,7 @@
+version: "2"
+domain: context-testing.pivotal.io
+repo: _/home/voor/git/context-testing-controller
+resources:
+- group: webapp
+  version: v1
+  kind: Guestbook
